@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mmeli Khumalo — Creator. Explorer. Everyman. From Kasi streets to global screens.">
+  <meta property="og:title" content="Mmeli Khumalo">
+  <meta property="og:description" content="From Kasi streets to global screens — authenticity, resilience, and creativity in every frame.">
+  <meta property="og:type" content="website">
+  <title>Mmeli Khumalo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: #0A0A0A;
+      color: #F0F0F0;
+      overflow-x: hidden;
+    }
+
+    /* ─── VARIABLES ────────────────────────────────────── */
+    :root {
+      --blue:       #1A52CC;
+      --blue-hover: #2563EB;
+      --black:      #0A0A0A;
+      --dark:       #111111;
+      --dark-2:     #1A1A1A;
+      --dark-3:     #222222;
+      --white:      #F0F0F0;
+      --grey:       #666666;
+      --light-grey: #AAAAAA;
+    }
+
+    /* ─── TYPOGRAPHY ───────────────────────────────────── */
+    .t-hero {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(72px, 14vw, 180px);
+      line-height: 0.88;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+    }
+    .t-section {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(48px, 8vw, 110px);
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+    .t-heading {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 4vw, 56px);
+      text-transform: uppercase;
+      line-height: 0.95;
+    }
+    .t-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: clamp(20px, 2.5vw, 32px);
+      text-transform: uppercase;
+    }
+    .t-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+    .t-body {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      font-size: clamp(15px, 1.4vw, 17px);
+      line-height: 1.75;
+      color: #BBBBBB;
+    }
+    .blue { color: var(--blue); }
+    .white { color: var(--white); }
+
+    /* ─── BUTTONS ──────────────────────────────────────── */
+    .btn {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 36px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-blue { background: var(--blue); color: white; }
+    .btn-blue:hover { background: var(--blue-hover); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    .btn-outline:hover { border-color: white; transform: translateY(-2px); }
+    .btn-outline-blue {
+      background: transparent;
+      color: var(--blue);
+      border: 2px solid var(--blue);
+    }
+    .btn-outline-blue:hover { background: var(--blue); color: white; transform: translateY(-2px); }
+
+    /* ─── SECTION LABEL ────────────────────────────────── */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 2px;
+      background: var(--blue);
+      flex-shrink: 0;
+    }
+
+    /* ─── NAV ──────────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 24px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.4s ease;
+    }
+    #navbar.scrolled {
+      padding: 16px 60px;
+      background: rgba(10,10,10,0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 26px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: white;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--blue); }
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta {
+      background: var(--blue);
+      color: white;
+      padding: 11px 28px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--blue-hover); }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      width: 26px;
+      height: 2px;
+      background: white;
+      display: block;
+      transition: all 0.3s;
+    }
+
+    /* ─── MOBILE NAV ───────────────────────────────────── */
+    #mobileNav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--black);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+    #mobileNav.open { display: flex; }
+    #mobileNav a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(36px, 8vw, 52px);
+      text-transform: uppercase;
+      color: white;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    #mobileNav a:hover { color: var(--blue); }
+    .mobile-close {
+      position: absolute;
+      top: 24px; right: 28px;
+      font-size: 44px;
+      color: white;
+      cursor: pointer;
+      line-height: 1;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 300;
+    }
+
+    /* ─── HERO ─────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    #heroVideo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,10,10,0.15) 0%,
+        rgba(10,10,10,0.35) 30%,
+        rgba(10,10,10,0.75) 70%,
+        rgba(10,10,10,0.97) 100%
+      );
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 0 60px 80px;
+    }
+    .hero-eyebrow {
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .hero-eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--blue);
+      border-radius: 50%;
+    }
+    .hero-name { margin-bottom: 20px; }
+    .hero-line2 {
+      -webkit-text-stroke: 2px var(--blue);
+      color: transparent;
+    }
+    .hero-tagline {
+      max-width: 560px;
+      margin-bottom: 44px;
+      font-size: clamp(15px, 1.6vw, 19px);
+      color: rgba(255,255,255,0.75);
+      font-weight: 300;
+      letter-spacing: 0.3px;
+      line-height: 1.6;
+    }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-scroll {
+      position: absolute;
+      bottom: 44px;
+      right: 60px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-scroll-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      writing-mode: vertical-rl;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+      animation: scrollAnim 2.2s ease-in-out infinite;
+    }
+    @keyframes scrollAnim {
+      0%, 100% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+      50% { opacity: 0.3; transform: scaleY(0.6); transform-origin: top; }
+    }
+
+    /* ─── ABOUT / BIO ──────────────────────────────────── */
+    #about { background: var(--dark); padding: 120px 60px; }
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .bio-quote {
+      position: relative;
+      padding-left: 32px;
+    }
+    .bio-quote::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: var(--blue);
+    }
+    .bio-quote-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(40px, 5.5vw, 72px);
+      text-transform: uppercase;
+      line-height: 0.92;
+      color: white;
+    }
+    .bio-quote-text .accent { color: var(--blue); }
+    .bio-right {}
+    .bio-text { margin-bottom: 44px; }
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .value-card {
+      background: var(--dark-2);
+      border-left: 3px solid var(--blue);
+      padding: 16px 18px;
+      transition: background 0.2s;
+    }
+    .value-card:hover { background: var(--dark-3); }
+    .value-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 5px;
+    }
+    .value-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+    }
+
+    /* ─── STATS ────────────────────────────────────────── */
+    #stats {
+      background: var(--blue);
+      padding: 80px 60px;
+    }
+    .stats-inner { max-width: 1300px; margin: 0 auto; }
+    .stats-top {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .stats-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 10px;
+    }
+    .stats-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(48px, 7vw, 90px);
+      text-transform: uppercase;
+      color: white;
+      line-height: 0.9;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+    }
+    .stat-card {
+      background: rgba(0,0,0,0.18);
+      padding: 36px 20px;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .stat-card:hover { background: rgba(0,0,0,0.28); }
+    .stat-icon { margin-bottom: 14px; display: flex; justify-content: center; }
+    .stat-icon svg { width: 30px; height: 30px; fill: white; }
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(40px, 5vw, 64px);
+      color: white;
+      line-height: 1;
+    }
+    .stat-platform {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-top: 6px;
+    }
+
+    /* ─── GALLERY ──────────────────────────────────────── */
+    #gallery { background: var(--black); padding: 120px 60px; }
+    .section-header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 56px;
+      max-width: 1300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      max-width: 1300px;
+      margin: 0 auto 44px;
+    }
+    .gallery-item {
+      aspect-ratio: 1 / 1;
+      background: var(--dark-2);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-placeholder-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .gallery-placeholder-inner svg {
+      width: 36px; height: 36px;
+      fill: none; stroke: rgba(255,255,255,0.15); stroke-width: 1.5;
+    }
+    .gallery-placeholder-inner span {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.15);
+    }
+    .gallery-hover {
+      position: absolute;
+      inset: 0;
+      background: rgba(26,82,204,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-item:hover .gallery-hover { opacity: 1; }
+    .gallery-hover svg { width: 36px; height: 36px; fill: white; }
+    .gallery-cta { text-align: center; max-width: 1300px; margin: 0 auto; }
+    .gallery-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+    }
+
+    /* ─── VIDEOS ───────────────────────────────────────── */
+    #videos { background: var(--dark); padding: 120px 60px; }
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .video-card {
+      background: var(--dark-2);
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .video-card:hover { transform: translateY(-6px); }
+    .video-thumb {
+      aspect-ratio: 16 / 9;
+      background: var(--black);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .video-thumb-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 50%, #0D0D0D 100%);
+    }
+    .video-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.06;
+      background-image: repeating-linear-gradient(
+        45deg,
+        var(--blue) 0px,
+        var(--blue) 1px,
+        transparent 1px,
+        transparent 20px
+      );
+    }
+    .play-btn {
+      position: relative;
+      z-index: 2;
+      width: 64px; height: 64px;
+      background: var(--blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 0 0 0 rgba(26,82,204,0.4);
+      animation: playPulse 2.5s infinite;
+    }
+    .play-btn:hover {
+      background: var(--blue-hover);
+      transform: scale(1.1);
+    }
+    .play-btn svg { width: 22px; height: 22px; fill: white; margin-left: 4px; }
+    @keyframes playPulse {
+      0% { box-shadow: 0 0 0 0 rgba(26,82,204,0.5); }
+      70% { box-shadow: 0 0 0 16px rgba(26,82,204,0); }
+      100% { box-shadow: 0 0 0 0 rgba(26,82,204,0); }
+    }
+    .video-info { padding: 22px 22px 26px; }
+    .video-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .video-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      text-transform: uppercase;
+      color: white;
+      margin-bottom: 10px;
+      line-height: 1.1;
+    }
+    .video-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .video-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .video-link:hover { color: var(--blue); }
+    .video-link svg { width: 14px; height: 14px; fill: currentColor; }
+
+    /* ─── BRAND COLLABS ────────────────────────────────── */
+    #collabs { background: var(--black); padding: 120px 60px; }
+    .collabs-inner { max-width: 1300px; margin: 0 auto; }
+    .collabs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      margin-top: 64px;
+    }
+    .collabs-left {}
+    .collabs-statement {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(32px, 4vw, 52px);
+      text-transform: uppercase;
+      line-height: 1.0;
+      color: white;
+      margin-bottom: 28px;
+    }
+    .collabs-statement .accent { color: var(--blue); }
+    .collabs-body { margin-bottom: 36px; }
+    .collabs-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+    .collab-tag {
+      border: 1px solid rgba(26,82,204,0.5);
+      color: var(--blue);
+      padding: 8px 18px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    .collab-tag:hover { background: var(--blue); color: white; }
+    .collabs-right {}
+    .collab-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-bottom: 40px;
+    }
+    .collab-stat {
+      background: var(--dark-2);
+      padding: 36px 28px;
+    }
+    .collab-stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(44px, 5vw, 72px);
+      color: var(--blue);
+      line-height: 1;
+    }
+    .collab-stat-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-top: 8px;
+    }
+    .collab-quote {
+      background: var(--blue);
+      padding: 32px;
+    }
+    .collab-quote-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: clamp(20px, 2.5vw, 28px);
+      text-transform: uppercase;
+      color: white;
+      line-height: 1.2;
+    }
+
+    /* ─── CONTACT ──────────────────────────────────────── */
+    #contact { background: var(--dark); padding: 120px 60px; }
+    .contact-inner { max-width: 1300px; margin: 0 auto; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      margin-top: 64px;
+    }
+    .contact-left {}
+    .contact-email-link {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(22px, 3vw, 40px);
+      text-transform: uppercase;
+      color: white;
+      text-decoration: none;
+      margin: 24px 0 8px;
+      transition: color 0.2s;
+    }
+    .contact-email-link:hover { color: var(--blue); }
+    .contact-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 44px;
+      letter-spacing: 0.5px;
+    }
+    .social-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--dark-2);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 12px 20px;
+      text-decoration: none;
+      transition: all 0.2s;
+      color: white;
+    }
+    .social-btn:hover {
+      background: var(--blue);
+      border-color: var(--blue);
+    }
+    .social-btn svg { width: 18px; height: 18px; fill: white; flex-shrink: 0; }
+    .social-btn-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .contact-right {}
+    .contact-form { display: flex; flex-direction: column; gap: 18px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--dark-2);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: white;
+      padding: 14px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue);
+    }
+    .form-group select { cursor: pointer; }
+    .form-group select option { background: var(--dark-2); }
+    .form-group textarea { height: 130px; resize: vertical; }
+
+    /* ─── FOOTER ───────────────────────────────────────── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 40px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: white;
+    }
+    .footer-logo span { color: var(--blue); }
+    .footer-credit {
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    .footer-credit a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-credit a:hover { color: var(--blue); }
+    .footer-socials { display: flex; gap: 12px; }
+    .footer-social-icon {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .footer-social-icon:hover {
+      background: var(--blue);
+      border-color: var(--blue);
+    }
+    .footer-social-icon svg { width: 16px; height: 16px; fill: white; }
+
+    /* ─── ANIMATIONS ───────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up-delay-1 { transition-delay: 0.1s; }
+    .fade-up-delay-2 { transition-delay: 0.2s; }
+    .fade-up-delay-3 { transition-delay: 0.3s; }
+    .fade-up-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE ───────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .stats-grid { grid-template-columns: repeat(3, 1fr); }
+      .collabs-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      #navbar { padding: 16px 24px; }
+      #navbar.scrolled { padding: 14px 24px; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero-content { padding: 0 24px 56px; }
+      .hero-scroll { display: none; }
+      #about, #gallery, #videos, #collabs, #contact { padding: 80px 24px; }
+      #stats { padding: 64px 24px; }
+      .bio-grid { grid-template-columns: 1fr; gap: 48px; }
+      .values-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .section-header-row { flex-direction: column; align-items: flex-start; gap: 20px; margin-bottom: 40px; }
+      .section-header-row.has-bottom { margin-bottom: 0; }
+      .videos-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
+      .collab-stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn { text-align: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══ MOBILE NAV ══════════════════════════════════════ -->
+  <div id="mobileNav">
+    <span class="mobile-close" onclick="closeMobileNav()">×</span>
+    <a href="#about"   onclick="closeMobileNav()">About</a>
+    <a href="#gallery" onclick="closeMobileNav()">Gallery</a>
+    <a href="#videos"  onclick="closeMobileNav()">Videos</a>
+    <a href="#collabs" onclick="closeMobileNav()">Collabs</a>
+    <a href="#contact" onclick="closeMobileNav()">Contact</a>
+    <a href="mailto:info@pipedream.africa" style="color: var(--blue); font-size: 20px; letter-spacing: 1px; text-transform: lowercase; font-weight: 400; margin-top: 8px;">info@pipedream.africa</a>
+  </div>
+
+  <!-- ═══ NAV ════════════════════════════════════════════ -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo">MMELI <span>K</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#collabs">Collabs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Book Mmeli</a>
+    <div class="nav-hamburger" onclick="openMobileNav()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ════════════════════════════════════════════ -->
+  <section id="hero">
+    <video id="heroVideo" autoplay muted loop playsinline>
+      <source src="./assets/hero-video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-dot"></div>
+        <span class="t-label" style="color: rgba(255,255,255,0.55); letter-spacing: 5px;">
+          Creator &nbsp;&nbsp;·&nbsp;&nbsp; Explorer &nbsp;&nbsp;·&nbsp;&nbsp; Storyteller
+        </span>
+      </div>
+      <div class="hero-name">
+        <div class="t-hero white">MMELI</div>
+        <div class="t-hero hero-line2">KHUMALO</div>
+      </div>
+      <p class="hero-tagline">
+        From Kasi streets to global screens — authenticity, resilience,<br>and creativity in every frame.
+      </p>
+      <div class="hero-ctas">
+        <a href="#collabs" class="btn btn-blue">Work With Me</a>
+        <a href="#about"   class="btn btn-outline">Explore</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span class="hero-scroll-text">Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT / BIO ═════════════════════════════════════ -->
+  <section id="about">
+    <div class="bio-grid">
+      <div class="bio-quote fade-up">
+        <div class="bio-quote-text">
+          EXCELLENCE<br>CAN RISE<br>FROM<br><span class="accent">BROKENNESS.</span>
+        </div>
+      </div>
+      <div class="bio-right fade-up fade-up-delay-2">
+        <div class="section-label">
+          <span class="t-label blue">About Mmeli</span>
+        </div>
+        <p class="t-body bio-text">
+          Mmeli Khumalo is a kasi boy from Johannesburg who rose from the streets to television screens, modelling campaigns, and digital platforms. His journey embodies resilience, creativity, and authenticity — showing that something real can rise from nothing.
+        </p>
+        <p class="t-body bio-text" style="margin-top: 16px;">
+          Through <strong style="color: white;">Broken Projects</strong>, he channels this lived experience into a restorative movement that uplifts people and places, proving that township excellence is not only possible, but powerful.
+        </p>
+        <div class="values-grid" style="margin-top: 36px;">
+          <div class="value-card">
+            <div class="value-title">Authenticity</div>
+            <div class="value-desc">Staying true to his kasi roots while embracing growth.</div>
+          </div>
+          <div class="value-card">
+            <div class="value-title">Resilience</div>
+            <div class="value-desc">Turning brokenness into beauty and opportunity.</div>
+          </div>
+          <div class="value-card">
+            <div class="value-title">Creativity</div>
+            <div class="value-desc">Expressing individuality through fashion, fitness &amp; storytelling.</div>
+          </div>
+          <div class="value-card">
+            <div class="value-title">Community</div>
+            <div class="value-desc">Building spaces that uplift township youth.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SOCIAL STATS ════════════════════════════════════ -->
+  <section id="stats">
+    <div class="stats-inner">
+      <div class="stats-top fade-up">
+        <div class="stats-eyebrow">Combined Social Reach</div>
+        <div class="stats-headline">350K+ Across Platforms</div>
+      </div>
+      <div class="stats-grid">
+        <!-- Instagram -->
+        <div class="stat-card fade-up">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+            </svg>
+          </div>
+          <div class="stat-num">154K</div>
+          <div class="stat-platform">Instagram</div>
+        </div>
+        <!-- TikTok -->
+        <div class="stat-card fade-up fade-up-delay-1">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.31 6.31 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.74a8.28 8.28 0 004.84 1.55V6.82a4.85 4.85 0 01-1.07-.13z"/>
+            </svg>
+          </div>
+          <div class="stat-num">110K</div>
+          <div class="stat-platform">TikTok</div>
+        </div>
+        <!-- Facebook -->
+        <div class="stat-card fade-up fade-up-delay-2">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </div>
+          <div class="stat-num">67K</div>
+          <div class="stat-platform">Facebook</div>
+        </div>
+        <!-- X / Twitter -->
+        <div class="stat-card fade-up fade-up-delay-3">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.739l7.731-8.835L2.25 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </div>
+          <div class="stat-num">9.9K</div>
+          <div class="stat-platform">X (Twitter)</div>
+        </div>
+        <!-- YouTube -->
+        <div class="stat-card fade-up fade-up-delay-4">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+            </svg>
+          </div>
+          <div class="stat-num">9K</div>
+          <div class="stat-platform">YouTube</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ GALLERY ══════════════════════════════════════════ -->
+  <section id="gallery">
+    <div class="section-header-row fade-up">
+      <div>
+        <div class="section-label">
+          <span class="t-label blue">Gallery</span>
+        </div>
+        <div class="t-section white">VISUAL STORIES</div>
+      </div>
+      <a href="https://www.instagram.com/mmeliofficial/" target="_blank" rel="noopener" class="btn btn-outline">
+        @mmeliofficial
+      </a>
+    </div>
+
+    <div class="gallery-grid fade-up">
+      <!-- Placeholders — replace src="" with actual image paths when available -->
+      <div class="gallery-item">
+        <div class="gallery-placeholder-inner">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Coming Soon</span>
+        </div>
+        <div class="gallery-hover">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder-inner">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Coming Soon</span>
+        </div>
+        <div class="gallery-hover"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder-inner">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Coming Soon</span>
+        </div>
+        <div class="gallery-hover"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder-inner">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Coming Soon</span>
+        </div>
+        <div class="gallery-hover"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder-inner">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Coming Soon</span>
+        </div>
+        <div class="gallery-hover"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder-inner">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Coming Soon</span>
+        </div>
+        <div class="gallery-hover"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder-inner">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Coming Soon</span>
+        </div>
+        <div class="gallery-hover"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder-inner">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Coming Soon</span>
+        </div>
+        <div class="gallery-hover"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+      </div>
+    </div>
+
+    <div class="gallery-cta fade-up">
+      <p class="gallery-note">Gallery images coming soon · Follow @mmeliofficial for the latest content</p>
+      <a href="https://www.instagram.com/mmeliofficial/" target="_blank" rel="noopener" class="btn btn-blue">
+        Follow on Instagram
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ VIDEOS ═══════════════════════════════════════════ -->
+  <section id="videos">
+    <div style="max-width: 1300px; margin: 0 auto;">
+      <div class="section-header-row fade-up">
+        <div>
+          <div class="section-label">
+            <span class="t-label blue">Content</span>
+          </div>
+          <div class="t-section white">WATCH MMELI</div>
+        </div>
+        <a href="https://www.youtube.com/@mmeliofficial" target="_blank" rel="noopener" class="btn btn-outline">
+          YouTube Channel
+        </a>
+      </div>
+
+      <div class="videos-grid fade-up">
+        <!-- Card 1 -->
+        <div class="video-card">
+          <div class="video-thumb">
+            <div class="video-thumb-bg"></div>
+            <div class="video-pattern"></div>
+            <a href="https://www.youtube.com/@mmeliofficial" target="_blank" rel="noopener" class="play-btn" aria-label="Watch on YouTube">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </a>
+          </div>
+          <div class="video-info">
+            <div class="video-tag">YouTube · Latest</div>
+            <div class="video-title">Kasi to Global Screens</div>
+            <div class="video-desc">The story behind the brand — resilience, creativity, and what it means to rise from brokenness.</div>
+            <a href="https://www.youtube.com/@mmeliofficial" target="_blank" rel="noopener" class="video-link">
+              Watch on YouTube
+              <svg viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="video-card">
+          <div class="video-thumb">
+            <div class="video-thumb-bg"></div>
+            <div class="video-pattern"></div>
+            <a href="https://www.youtube.com/@mmeliofficial" target="_blank" rel="noopener" class="play-btn" aria-label="Watch on YouTube">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </a>
+          </div>
+          <div class="video-info">
+            <div class="video-tag">YouTube · Content</div>
+            <div class="video-title">Brand Collaboration</div>
+            <div class="video-desc">Behind the scenes of one of Mmeli's brand partnerships — authenticity meets opportunity.</div>
+            <a href="https://www.youtube.com/@mmeliofficial" target="_blank" rel="noopener" class="video-link">
+              Watch on YouTube
+              <svg viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="video-card">
+          <div class="video-thumb">
+            <div class="video-thumb-bg"></div>
+            <div class="video-pattern"></div>
+            <a href="https://www.youtube.com/@mmeliofficial" target="_blank" rel="noopener" class="play-btn" aria-label="Watch on YouTube">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </a>
+          </div>
+          <div class="video-info">
+            <div class="video-tag">YouTube · Lifestyle</div>
+            <div class="video-title">Township Excellence</div>
+            <div class="video-desc">Exploring what it means to live boldly, stay grounded, and build something real from nothing.</div>
+            <a href="https://www.youtube.com/@mmeliofficial" target="_blank" rel="noopener" class="video-link">
+              Watch on YouTube
+              <svg viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BRAND COLLABS ════════════════════════════════════ -->
+  <section id="collabs">
+    <div class="collabs-inner">
+      <div class="fade-up">
+        <div class="section-label">
+          <span class="t-label blue">Partner With Mmeli</span>
+        </div>
+        <div class="t-section white">BRAND<br>PARTNERSHIPS</div>
+      </div>
+
+      <div class="collabs-grid">
+        <div class="collabs-left fade-up">
+          <div class="collabs-statement">
+            Every Collab Is More Than Content —<br>It's A <span class="accent">Statement.</span>
+          </div>
+          <p class="t-body collabs-body">
+            Mmeli aligns only with brands that share his values of authenticity, impact, and representation. With a combined reach of 350K+ across platforms and a deeply engaged township audience, every partnership becomes a cultural moment.
+          </p>
+          <p class="t-body collabs-body">
+            Whether it's fashion, lifestyle, fitness, tech, or food &amp; beverage — if your brand has something real to say, Mmeli has the audience to say it to.
+          </p>
+          <div class="collabs-tags">
+            <span class="collab-tag">Fashion &amp; Apparel</span>
+            <span class="collab-tag">Lifestyle</span>
+            <span class="collab-tag">Fitness &amp; Wellness</span>
+            <span class="collab-tag">Technology</span>
+            <span class="collab-tag">Food &amp; Beverage</span>
+            <span class="collab-tag">Events</span>
+            <span class="collab-tag">Youth Culture</span>
+            <span class="collab-tag">Community Initiatives</span>
+          </div>
+          <a href="#contact" class="btn btn-blue">Start a Conversation</a>
+        </div>
+
+        <div class="collabs-right fade-up fade-up-delay-2">
+          <div class="collab-stats-grid">
+            <div class="collab-stat">
+              <div class="collab-stat-num">350K+</div>
+              <div class="collab-stat-label">Combined Reach</div>
+            </div>
+            <div class="collab-stat">
+              <div class="collab-stat-num">154K</div>
+              <div class="collab-stat-label">Instagram Followers</div>
+            </div>
+            <div class="collab-stat">
+              <div class="collab-stat-num">110K</div>
+              <div class="collab-stat-label">TikTok Followers</div>
+            </div>
+            <div class="collab-stat">
+              <div class="collab-stat-num">5+</div>
+              <div class="collab-stat-label">Platforms Active</div>
+            </div>
+          </div>
+          <div class="collab-quote">
+            <div class="collab-quote-text">
+              "Grounded in township roots.<br>Reaching for global excellence."
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT ══════════════════════════════════════════ -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="fade-up">
+        <div class="section-label">
+          <span class="t-label blue">Get In Touch</span>
+        </div>
+        <div class="t-section white">LET'S<br>WORK.</div>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-left fade-up">
+          <p class="t-body" style="margin-top: 8px;">For bookings, brand partnerships, appearances, and general enquiries:</p>
+          <a href="mailto:info@pipedream.africa" class="contact-email-link">
+            info@pipedream.africa
+          </a>
+          <p class="contact-note">Managed by Broken Projects · Johannesburg, South Africa</p>
+
+          <div class="social-grid">
+            <a href="https://www.instagram.com/mmeliofficial/" target="_blank" rel="noopener" class="social-btn">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              <span class="social-btn-name">Instagram</span>
+            </a>
+            <a href="https://www.tiktok.com/@mmeliofficial" target="_blank" rel="noopener" class="social-btn">
+              <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.31 6.31 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.74a8.28 8.28 0 004.84 1.55V6.82a4.85 4.85 0 01-1.07-.13z"/></svg>
+              <span class="social-btn-name">TikTok</span>
+            </a>
+            <a href="https://www.youtube.com/@mmeliofficial" target="_blank" rel="noopener" class="social-btn">
+              <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+              <span class="social-btn-name">YouTube</span>
+            </a>
+            <a href="https://x.com/mmeliofficial" target="_blank" rel="noopener" class="social-btn">
+              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.739l7.731-8.835L2.25 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <span class="social-btn-name">X (Twitter)</span>
+            </a>
+            <a href="https://www.twitch.tv/mmeliofficial" target="_blank" rel="noopener" class="social-btn">
+              <svg viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
+              <span class="social-btn-name">Twitch</span>
+            </a>
+            <a href="https://www.facebook.com/mmeliofficial" target="_blank" rel="noopener" class="social-btn">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              <span class="social-btn-name">Facebook</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-right fade-up fade-up-delay-2">
+          <form class="contact-form" onsubmit="handleFormSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="fname" placeholder="Your first name" required>
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lname" placeholder="Your last name" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="company">Company / Brand (Optional)</label>
+              <input type="text" id="company" name="company" placeholder="Your brand or company name">
+            </div>
+            <div class="form-group">
+              <label for="enquiry">Type of Enquiry</label>
+              <select id="enquiry" name="enquiry">
+                <option value="">Select enquiry type</option>
+                <option value="brand-collab">Brand Collaboration</option>
+                <option value="event">Event Appearance</option>
+                <option value="media">Media &amp; Press</option>
+                <option value="speaking">Speaking Engagement</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us about your project or enquiry..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-blue" style="width: 100%; font-size: 15px;">
+              Send Enquiry
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-logo">MMELI <span>K</span></div>
+    <div class="footer-credit">
+      © 2025 Mmeli Khumalo · Managed by
+      <a href="mailto:info@pipedream.africa">Broken Projects</a>
+    </div>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/mmeliofficial/" target="_blank" rel="noopener" class="footer-social-icon" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@mmeliofficial" target="_blank" rel="noopener" class="footer-social-icon" aria-label="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.31 6.31 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.74a8.28 8.28 0 004.84 1.55V6.82a4.85 4.85 0 01-1.07-.13z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@mmeliofficial" target="_blank" rel="noopener" class="footer-social-icon" aria-label="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+      </a>
+      <a href="https://x.com/mmeliofficial" target="_blank" rel="noopener" class="footer-social-icon" aria-label="X (Twitter)">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.739l7.731-8.835L2.25 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://www.twitch.tv/mmeliofficial" target="_blank" rel="noopener" class="footer-social-icon" aria-label="Twitch">
+        <svg viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/mmeliofficial" target="_blank" rel="noopener" class="footer-social-icon" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- ═══ JAVASCRIPT ════════════════════════════════════════ -->
+  <script>
+    // ── Nav scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ── Mobile nav
+    function openMobileNav() {
+      document.getElementById('mobileNav').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobileNav() {
+      document.getElementById('mobileNav').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ── Scroll-triggered fade-up animations
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // ── Contact form (opens mailto as fallback — swap for Formspree/Netlify Forms when hosted)
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const fname    = document.getElementById('fname').value;
+      const lname    = document.getElementById('lname').value;
+      const email    = document.getElementById('email').value;
+      const company  = document.getElementById('company').value;
+      const enquiry  = document.getElementById('enquiry').value;
+      const message  = document.getElementById('message').value;
+
+      const subject  = encodeURIComponent(`Enquiry from ${fname} ${lname}${company ? ' — ' + company : ''}`);
+      const body     = encodeURIComponent(
+        `Name: ${fname} ${lname}\nEmail: ${email}\nCompany: ${company || 'N/A'}\nEnquiry Type: ${enquiry || 'N/A'}\n\nMessage:\n${message}`
+      );
+      window.location.href = `mailto:info@pipedream.africa?subject=${subject}&body=${body}`;
+    }
+  </script>
+
+</body>
+</html>
