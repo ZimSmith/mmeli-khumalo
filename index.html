@@ -528,56 +528,60 @@
       transition: transform 0.3s;
     }
     .video-card:hover { transform: translateY(-6px); }
-    .video-thumb {
+    /* YouTube facade — thumbnail shown until user clicks play */
+    .video-embed-wrap {
+      position: relative;
       aspect-ratio: 16 / 9;
       background: var(--black);
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
+      cursor: pointer;
     }
-    .video-thumb-bg {
+    .video-embed-wrap iframe {
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 50%, #0D0D0D 100%);
+      width: 100%;
+      height: 100%;
+      border: none;
     }
-    .video-pattern {
+    .yt-facade {
       position: absolute;
       inset: 0;
-      opacity: 0.06;
-      background-image: repeating-linear-gradient(
-        45deg,
-        var(--blue) 0px,
-        var(--blue) 1px,
-        transparent 1px,
-        transparent 20px
-      );
+      width: 100%;
+      height: 100%;
     }
-    .play-btn {
-      position: relative;
-      z-index: 2;
-      width: 64px; height: 64px;
-      background: var(--blue);
+    .yt-facade img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .video-embed-wrap:hover .yt-facade img { transform: scale(1.04); }
+    .yt-facade-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.28);
+      transition: background 0.3s;
+    }
+    .video-embed-wrap:hover .yt-facade-overlay { background: rgba(0,0,0,0.15); }
+    .yt-play-btn {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 68px; height: 68px;
+      background: rgba(255,0,0,0.92);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-decoration: none;
-      transition: all 0.3s;
-      box-shadow: 0 0 0 0 rgba(26,82,204,0.4);
-      animation: playPulse 2.5s infinite;
+      transition: transform 0.25s ease, background 0.25s;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.5);
     }
-    .play-btn:hover {
-      background: var(--blue-hover);
-      transform: scale(1.1);
+    .video-embed-wrap:hover .yt-play-btn {
+      transform: translate(-50%, -50%) scale(1.12);
+      background: #FF0000;
     }
-    .play-btn svg { width: 22px; height: 22px; fill: white; margin-left: 4px; }
-    @keyframes playPulse {
-      0% { box-shadow: 0 0 0 0 rgba(26,82,204,0.5); }
-      70% { box-shadow: 0 0 0 16px rgba(26,82,204,0); }
-      100% { box-shadow: 0 0 0 0 rgba(26,82,204,0); }
-    }
+    .yt-play-btn svg { width: 26px; height: 26px; fill: white; margin-left: 4px; }
     .video-info { padding: 22px 22px 26px; }
     .video-tag {
       font-family: 'Barlow Condensed', sans-serif;
@@ -1061,72 +1065,12 @@
       </a>
     </div>
 
-    <div class="gallery-grid fade-up">
-      <!-- Placeholders — replace src="" with actual image paths when available -->
-      <div class="gallery-item">
-        <div class="gallery-placeholder-inner">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          <span>Coming Soon</span>
-        </div>
-        <div class="gallery-hover">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-placeholder-inner">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          <span>Coming Soon</span>
-        </div>
-        <div class="gallery-hover"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-placeholder-inner">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          <span>Coming Soon</span>
-        </div>
-        <div class="gallery-hover"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-placeholder-inner">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          <span>Coming Soon</span>
-        </div>
-        <div class="gallery-hover"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-placeholder-inner">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          <span>Coming Soon</span>
-        </div>
-        <div class="gallery-hover"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-placeholder-inner">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          <span>Coming Soon</span>
-        </div>
-        <div class="gallery-hover"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-placeholder-inner">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          <span>Coming Soon</span>
-        </div>
-        <div class="gallery-hover"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-placeholder-inner">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          <span>Coming Soon</span>
-        </div>
-        <div class="gallery-hover"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
-      </div>
-    </div>
+    <!-- Gallery tiles — JS picks 8 random images from 13 on each load, no duplicates -->
+    <div class="gallery-grid fade-up" id="galleryGrid"></div>
 
     <div class="gallery-cta fade-up">
-      <p class="gallery-note">Gallery images coming soon · Follow @mmeliofficial for the latest content</p>
       <a href="https://www.instagram.com/mmeliofficial/" target="_blank" rel="noopener" class="btn btn-blue">
-        Follow on Instagram
+        Follow @mmeliofficial
       </a>
     </div>
   </section>
@@ -1149,57 +1093,69 @@
       <div class="videos-grid fade-up">
         <!-- Card 1 -->
         <div class="video-card">
-          <div class="video-thumb">
-            <div class="video-thumb-bg"></div>
-            <div class="video-pattern"></div>
-            <a href="https://www.youtube.com/@mmeliofficial" target="_blank" rel="noopener" class="play-btn" aria-label="Watch on YouTube">
-              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            </a>
+          <div class="video-embed-wrap" data-videoid="OWpz-MHitiw" data-start="0" onclick="loadYTVideo(this)">
+            <div class="yt-facade">
+              <img src="https://img.youtube.com/vi/OWpz-MHitiw/maxresdefault.jpg"
+                   onerror="this.src='https://img.youtube.com/vi/OWpz-MHitiw/hqdefault.jpg'"
+                   alt="Mmeli Khumalo — YouTube" loading="lazy">
+              <div class="yt-facade-overlay"></div>
+              <div class="yt-play-btn">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
           </div>
           <div class="video-info">
             <div class="video-tag">YouTube · Latest</div>
-            <div class="video-title">Kasi to Global Screens</div>
-            <div class="video-desc">The story behind the brand — resilience, creativity, and what it means to rise from brokenness.</div>
-            <a href="https://www.youtube.com/@mmeliofficial" target="_blank" rel="noopener" class="video-link">
-              Watch on YouTube
+            <div class="video-title">Watch on YouTube</div>
+            <div class="video-desc">Creator · Explorer · Storyteller. New content from Mmeli Khumalo.</div>
+            <a href="https://www.youtube.com/watch?v=OWpz-MHitiw" target="_blank" rel="noopener" class="video-link">
+              Open on YouTube
               <svg viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>
           </div>
         </div>
         <!-- Card 2 -->
         <div class="video-card">
-          <div class="video-thumb">
-            <div class="video-thumb-bg"></div>
-            <div class="video-pattern"></div>
-            <a href="https://www.youtube.com/@mmeliofficial" target="_blank" rel="noopener" class="play-btn" aria-label="Watch on YouTube">
-              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            </a>
+          <div class="video-embed-wrap" data-videoid="uhzhoLjn7vo" data-start="60" onclick="loadYTVideo(this)">
+            <div class="yt-facade">
+              <img src="https://img.youtube.com/vi/uhzhoLjn7vo/maxresdefault.jpg"
+                   onerror="this.src='https://img.youtube.com/vi/uhzhoLjn7vo/hqdefault.jpg'"
+                   alt="Mmeli Khumalo — YouTube" loading="lazy">
+              <div class="yt-facade-overlay"></div>
+              <div class="yt-play-btn">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
           </div>
           <div class="video-info">
             <div class="video-tag">YouTube · Content</div>
-            <div class="video-title">Brand Collaboration</div>
-            <div class="video-desc">Behind the scenes of one of Mmeli's brand partnerships — authenticity meets opportunity.</div>
-            <a href="https://www.youtube.com/@mmeliofficial" target="_blank" rel="noopener" class="video-link">
-              Watch on YouTube
+            <div class="video-title">Watch on YouTube</div>
+            <div class="video-desc">Resilience, creativity, and authenticity — in every frame.</div>
+            <a href="https://www.youtube.com/watch?v=uhzhoLjn7vo&t=60s" target="_blank" rel="noopener" class="video-link">
+              Open on YouTube
               <svg viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>
           </div>
         </div>
         <!-- Card 3 -->
         <div class="video-card">
-          <div class="video-thumb">
-            <div class="video-thumb-bg"></div>
-            <div class="video-pattern"></div>
-            <a href="https://www.youtube.com/@mmeliofficial" target="_blank" rel="noopener" class="play-btn" aria-label="Watch on YouTube">
-              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            </a>
+          <div class="video-embed-wrap" data-videoid="DYBB2UDc9Y4" data-start="563" onclick="loadYTVideo(this)">
+            <div class="yt-facade">
+              <img src="https://img.youtube.com/vi/DYBB2UDc9Y4/maxresdefault.jpg"
+                   onerror="this.src='https://img.youtube.com/vi/DYBB2UDc9Y4/hqdefault.jpg'"
+                   alt="Mmeli Khumalo — YouTube" loading="lazy">
+              <div class="yt-facade-overlay"></div>
+              <div class="yt-play-btn">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
           </div>
           <div class="video-info">
             <div class="video-tag">YouTube · Lifestyle</div>
-            <div class="video-title">Township Excellence</div>
-            <div class="video-desc">Exploring what it means to live boldly, stay grounded, and build something real from nothing.</div>
-            <a href="https://www.youtube.com/@mmeliofficial" target="_blank" rel="noopener" class="video-link">
-              Watch on YouTube
+            <div class="video-title">Watch on YouTube</div>
+            <div class="video-desc">From Kasi streets to global screens — grounded in local identity.</div>
+            <a href="https://www.youtube.com/watch?v=DYBB2UDc9Y4&t=563s" target="_blank" rel="noopener" class="video-link">
+              Open on YouTube
               <svg viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>
           </div>
@@ -1419,6 +1375,59 @@
       });
     }, { threshold: 0.12 });
     fadeEls.forEach(el => observer.observe(el));
+
+    // ── YouTube facade — swap thumbnail for iframe on click
+    function loadYTVideo(wrap) {
+      const id    = wrap.dataset.videoid;
+      const start = wrap.dataset.start || '0';
+      const src   = `https://www.youtube.com/embed/${id}?start=${start}&autoplay=1&rel=0&modestbranding=1`;
+      wrap.innerHTML = `<iframe src="${src}" title="Mmeli Khumalo" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:none;"></iframe>`;
+      wrap.style.cursor = 'default';
+    }
+
+    // ── Gallery rotation — shuffles all 13 images, picks 8 unique ones per load
+    // TO ADD PHOTOS: save your 13 images as gallery-01.jpg through gallery-13.jpg
+    // inside the folder:  mmeli-khumalo/assets/gallery/
+    (function buildGallery() {
+      const allImages = [
+        // Modern Tailors shoot (white suit + sunflowers)
+        { src: './assets/gallery/gallery-01.jpg', alt: 'Mmeli Khumalo' },
+        { src: './assets/gallery/gallery-02.jpg', alt: 'Mmeli Khumalo' },
+        { src: './assets/gallery/gallery-03.jpg', alt: 'Mmeli Khumalo' },
+        { src: './assets/gallery/gallery-04.jpg', alt: 'Mmeli Khumalo' },
+        // Grey hoodie / staircase shoot
+        { src: './assets/gallery/gallery-05.jpg', alt: 'Mmeli Khumalo' },
+        { src: './assets/gallery/gallery-06.jpg', alt: 'Mmeli Khumalo' },
+        { src: './assets/gallery/gallery-07.jpg', alt: 'Mmeli Khumalo' },
+        // Pink shirt / blue beret shoot
+        { src: './assets/gallery/gallery-08.jpg', alt: 'Mmeli Khumalo' },
+        { src: './assets/gallery/gallery-09.jpg', alt: 'Mmeli Khumalo' },
+        { src: './assets/gallery/gallery-10.jpg', alt: 'Mmeli Khumalo' },
+        // Studio / brand shoots
+        { src: './assets/gallery/gallery-11.jpg', alt: 'Mmeli Khumalo' },
+        { src: './assets/gallery/gallery-12.jpg', alt: 'Mmeli Khumalo' },
+        { src: './assets/gallery/gallery-13.jpg', alt: 'Mmeli Khumalo' },
+      ];
+
+      // Fisher-Yates shuffle
+      for (let i = allImages.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [allImages[i], allImages[j]] = [allImages[j], allImages[i]];
+      }
+
+      const igIcon = `<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>`;
+
+      const grid = document.getElementById('galleryGrid');
+      if (!grid) return;
+      grid.innerHTML = allImages.slice(0, 8).map(img => `
+        <div class="gallery-item">
+          <img src="${img.src}" alt="${img.alt}" loading="lazy">
+          <div class="gallery-hover">${igIcon}</div>
+        </div>
+      `).join('');
+    })();
 
     // ── Contact form (opens mailto as fallback — swap for Formspree/Netlify Forms when hosted)
     function handleFormSubmit(e) {
