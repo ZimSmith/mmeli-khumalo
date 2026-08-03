@@ -1101,74 +1101,7 @@
         </a>
       </div>
 
-      <div class="videos-grid fade-up">
-        <!-- Card 1 -->
-        <div class="video-card">
-          <div class="video-embed-wrap" data-videoid="MTqWT_fPM4I" data-start="0" onclick="loadYTVideo(this)">
-            <div class="yt-facade">
-              <img src="https://img.youtube.com/vi/MTqWT_fPM4I/hqdefault.jpg"
-                   alt="Mmeli Khumalo — YouTube" loading="lazy">
-              <div class="yt-facade-overlay"></div>
-              <div class="yt-play-btn">
-                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </div>
-            </div>
-          </div>
-          <div class="video-info">
-            <div class="video-tag">YouTube · Latest</div>
-            <div class="video-title">Watch on YouTube</div>
-            <div class="video-desc">Creator · Explorer · Storyteller. New content from Mmeli Khumalo.</div>
-            <a href="https://www.youtube.com/watch?v=MTqWT_fPM4I" target="_blank" rel="noopener" class="video-link">
-              Open on YouTube
-              <svg viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </a>
-          </div>
-        </div>
-        <!-- Card 2 -->
-        <div class="video-card">
-          <div class="video-embed-wrap" data-videoid="XT2H0YxwMuM" data-start="0" onclick="loadYTVideo(this)">
-            <div class="yt-facade">
-              <img src="https://img.youtube.com/vi/XT2H0YxwMuM/hqdefault.jpg"
-                   alt="Mmeli Khumalo — YouTube" loading="lazy">
-              <div class="yt-facade-overlay"></div>
-              <div class="yt-play-btn">
-                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </div>
-            </div>
-          </div>
-          <div class="video-info">
-            <div class="video-tag">YouTube · Content</div>
-            <div class="video-title">Watch on YouTube</div>
-            <div class="video-desc">Resilience, creativity, and authenticity — in every frame.</div>
-            <a href="https://www.youtube.com/watch?v=XT2H0YxwMuM" target="_blank" rel="noopener" class="video-link">
-              Open on YouTube
-              <svg viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </a>
-          </div>
-        </div>
-        <!-- Card 3 -->
-        <div class="video-card">
-          <div class="video-embed-wrap" data-videoid="ZOvqVnkByEE" data-start="0" onclick="loadYTVideo(this)">
-            <div class="yt-facade">
-              <img src="https://img.youtube.com/vi/ZOvqVnkByEE/hqdefault.jpg"
-                   alt="Mmeli Khumalo — YouTube" loading="lazy">
-              <div class="yt-facade-overlay"></div>
-              <div class="yt-play-btn">
-                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </div>
-            </div>
-          </div>
-          <div class="video-info">
-            <div class="video-tag">YouTube · Lifestyle</div>
-            <div class="video-title">Watch on YouTube</div>
-            <div class="video-desc">From Kasi streets to global screens — grounded in local identity.</div>
-            <a href="https://www.youtube.com/watch?v=ZOvqVnkByEE" target="_blank" rel="noopener" class="video-link">
-              Open on YouTube
-              <svg viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
+      <div id="videos-grid" class="videos-grid fade-up"></div>
     </div>
   </section>
 
@@ -1394,6 +1327,45 @@
         allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:none;"></iframe>`;
       wrap.style.cursor = 'default';
     }
+
+    // ── Dynamic YouTube videos — reads from videos.json, updated weekly by cron
+    (function loadYouTubeVideos() {
+      const grid   = document.getElementById('videos-grid');
+      const labels = ['Latest', 'Recent', 'Recent'];
+      function esc(s) {
+        return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      }
+      function cardHtml(id, title, label) {
+        const safeId = id.replace(/[^a-zA-Z0-9_-]/g, '');
+        return `<div class="video-card">
+          <div class="video-embed-wrap" data-videoid="${safeId}" data-start="0" onclick="loadYTVideo(this)">
+            <div class="yt-facade">
+              <img src="https://img.youtube.com/vi/${safeId}/hqdefault.jpg"
+                   alt="Mmeli Khumalo — YouTube" loading="lazy">
+              <div class="yt-facade-overlay"></div>
+              <div class="yt-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            </div>
+          </div>
+          <div class="video-info">
+            <div class="video-tag">YouTube · ${esc(label)}</div>
+            <div class="video-title">${esc(title)}</div>
+            <div class="video-desc">Creator · Explorer · Storyteller.</div>
+            <a href="https://www.youtube.com/watch?v=${safeId}" target="_blank" rel="noopener" class="video-link">
+              Open on YouTube
+              <svg viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+          </div>
+        </div>`;
+      }
+      fetch('./videos.json')
+        .then(r => r.json())
+        .then(data => {
+          grid.innerHTML = data.videos.slice(0, 3).map((v, i) => cardHtml(v.id, v.title || 'Watch on YouTube', labels[i])).join('');
+        })
+        .catch(() => {
+          grid.innerHTML = cardHtml('OVeRKE77g4o', 'Watch on YouTube', 'Latest');
+        });
+    })();
 
     // ── Gallery rotation — shuffles all 13 images, picks 8 unique ones per load
     // TO ADD PHOTOS: save your 13 images as gallery-01.jpg through gallery-13.jpg
